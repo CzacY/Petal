@@ -35,7 +35,8 @@
             android:id="@+id/txtregisterPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password" />
+            android:hint="Password"
+            android:inputType="textPassword"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <ProgressBar
@@ -45,7 +46,7 @@
         android:layout_height="wrap_content"/>
 
     <Button
-        android:id="@+id/btn_logout"
+        android:id="@+id/btn_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Login" />

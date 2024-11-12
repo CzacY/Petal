@@ -1,21 +1,21 @@
 package com.example.flowerobjectdetection;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import org.w3c.dom.Comment;
 
@@ -23,76 +23,95 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SunflowerComment extends AppCompatActivity {
-
+    private FirebaseFirestore db;
+    private RecyclerView recyclerView;
+    private List<Comment> commentsList;
+    private CommentAdapter commentAdapter;
     private EditText editTextComment;
     private Button buttonSubmitComment;
-    private RecyclerView recyclerViewComments;
-    private CommentsAdapter commentsAdapter;
-    private List<Comment> commentList;
-
-    private FirebaseFirestore db;
-    private FirebaseUser currentUser;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sunflower_comment);
 
-        editTextComment = findViewById(R.id.commentInput);
-        buttonSubmitComment = findViewById(R.id.btn_submitComment);
-        recyclerViewComments = findViewById(R.id.recyclerViewComments);
-
         // Initialize Firestore
         db = FirebaseFirestore.getInstance();
-        currentUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        // Setup RecyclerView
-        commentList = new ArrayList<>();
-        commentsAdapter = new CommentsAdapter((ArrayList<Comment>) commentList);
-        recyclerViewComments.setLayoutManager(new LinearLayoutManager(this));
-        recyclerViewComments.setAdapter(commentsAdapter);
+        // Set up RecyclerView and Adapter
+        recyclerView = findViewById(R.id.recyclerView);
+        commentsList = new ArrayList<>();
+        commentAdapter = new CommentAdapter(commentsList);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(commentAdapter);
 
-        // Load comments from Firestore
-        loadComments();
+        // Set up input field and post button
+        editTextComment = findViewById(R.id.editTextComment);
+        buttonSubmitComment = findViewById(R.id.buttonSubmitComment);
 
-        buttonSubmitComment.setOnClickListener(v -> {
+        // Fetch existing comments
+        fetchComments();
+
+        // Post comment when button is clicked
+        buttonSubmitComment.setOnClickListener(v -> postComment());
+    }
+
+    private void postComment() {
+        // Get current user (from FirebaseAuth)
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            // Get comment input text from EditText
             String commentText = editTextComment.getText().toString();
+
+            // Log comment text to check if it's retrieved correctly
+            Log.d("SunflowerComment", "Comment text: " + commentText);
+
             if (!commentText.isEmpty()) {
-                submitComment(commentText);
+                // Create a new Comment object
+                Comment newComment = new Comment(
+                        user.getDisplayName(),commentText, "sunflower", System.currentTimeMillis()
+                );
+
+                // Log to confirm comment creation
+                Log.d("SunflowerComment", "New comment created: " + newComment.toString());
+
+                // Save comment to Firestore
+                db.collection("Comments")
+                        .add(newComment)
+                        .addOnSuccessListener(documentReference -> {
+                            Log.d("SunflowerComment", "Comment posted successfully!");
+                            Toast.makeText(SunflowerComment.this, "Comment posted!", Toast.LENGTH_SHORT).show();
+                            editTextComment.setText("");  // Clear the input after posting
+                        })
+                        .addOnFailureListener(e -> {
+                            Log.w("SunflowerComment", "Error posting comment: ", e);
+                            Toast.makeText(SunflowerComment.this, "Failed to post comment.", Toast.LENGTH_SHORT).show();
+                        });
             } else {
-                Toast.makeText(SunflowerComment.this, "Comment cannot be empty.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SunflowerComment.this, "Please enter a comment.", Toast.LENGTH_SHORT).show();
             }
-        });
-    }
-
-    private void loadComments() {
-        db.collection("comments") // Ensure you have a "comments" collection in Firestore
-                .orderBy("timestamp", Query.Direction.ASCENDING) // Order by timestamp
-                .get()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        commentList.clear(); // Clear previous comments
-                        for (QueryDocumentSnapshot document : task.getResult()) {
-                            Comment comment = document.toObject(Comment.class);
-                            commentList.add(comment);
-                        }
-                        commentsAdapter.notifyDataSetChanged(); // Notify adapter of data changes
-                    } else {
-                        Toast.makeText(SunflowerComment.this, "Error loading comments.", Toast.LENGTH_SHORT).show();
-                    }
-                });
-    }
-
-    private void submitComment(String commentText) {
-        if (currentUser != null) {
-            Comments newComment = new Comments(currentUser.getUid(), commentText, System.currentTimeMillis());
-
-            db.collection("comments").add(newComment)
-                    .addOnSuccessListener(documentReference -> {
-                        editTextComment.setText(""); // Clear input field
-                        loadComments(); // Reload comments after submission
-                    })
-                    .addOnFailureListener(e -> Toast.makeText(SunflowerComment.this, "Error submitting comment.", Toast.LENGTH_SHORT).show());
+        } else {
+            Toast.makeText(SunflowerComment.this, "Please log in to post a comment.", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void fetchComments() {
+        db.collection("Comments")
+                .whereEqualTo("plantId", "sunflower") // Specific to Sunflower
+                .orderBy("timestamp", Query.Direction.ASCENDING)
+                .addSnapshotListener((snapshots, e) -> {
+                    if (e != null) {
+                        Log.w("Firestore", "Listen failed.", e);
+                        return;
+                    }
+
+                    commentsList.clear();
+                    for (QueryDocumentSnapshot doc : snapshots) {
+                        Comment comment = doc.toObject(Comment.class);
+                        commentsList.add(comment);
+                    }
+                    commentAdapter.notifyDataSetChanged();
+                });
     }
 }

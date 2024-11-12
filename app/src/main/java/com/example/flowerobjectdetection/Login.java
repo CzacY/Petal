@@ -20,7 +20,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class Login extends AppCompatActivity {
 
-    private Button loginBtn;
+    private Button login;
     private Button register;
     private TextInputEditText editTextEmail, editTextPassword;
     private FirebaseAuth mAuth;
@@ -32,14 +32,15 @@ public class Login extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
+        // Check if user is signed in and their email is verified
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser != null) {
+        if (currentUser != null && currentUser.isEmailVerified()) {
             Intent intent = new Intent(getApplicationContext(), Dashboard.class);
             startActivity(intent);
             finish();
         }
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +51,7 @@ public class Login extends AppCompatActivity {
 
         editTextEmail = findViewById(R.id.txtregisterEmail);
         editTextPassword = findViewById(R.id.txtregisterPassword);
-        loginBtn = findViewById(R.id.btn_logout);
+        login = findViewById(R.id.btn_login);
         progressBar = findViewById(R.id.progressBar);
         registerTextView = findViewById(R.id.registerNow);
         forgotPasswordTextView = findViewById(R.id.txtForgotPassword);
@@ -68,7 +69,7 @@ public class Login extends AppCompatActivity {
         });
 
         // Login logic
-        loginBtn.setOnClickListener(v -> {
+        login.setOnClickListener(v -> {
             progressBar.setVisibility(View.VISIBLE);
             String email = String.valueOf(editTextEmail.getText());
             String password = String.valueOf(editTextPassword.getText());

@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.INTERNET"/>
-
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -29,6 +28,12 @@
         android:supportsRtl="true"
         android:theme="@style/PETAL"
         tools:targetApi="34">
+        <activity
+            android:name=".CommentAdapter"
+            android:exported="false" />
+        <activity
+            android:name=".TermsandConditions"
+            android:exported="false" />
         <activity
             android:name=".CommentsAdapter"
             android:exported="false" />

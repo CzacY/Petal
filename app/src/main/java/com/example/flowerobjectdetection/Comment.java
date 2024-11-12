@@ -1,30 +1,46 @@
 package com.example.flowerobjectdetection;
-
+import com.example.flowerobjectdetection.Comment;
 public class Comment {
-    private String userId;
-    private String text;
+    private String username;
+    private String commentText;
+    private String plantId;
     private long timestamp;
 
-    // Default constructor required for calls to DataSnapshot.getValue(Comment.class)
-    public Comment() {}
-
-    // Constructor
-    public Comment(String userId, String text, long timestamp) {
-        this.userId = userId;
-        this.text = text;
+    // Constructor to initialize the values
+    public Comment(String username, String commentText, String plantId, long timestamp) {
+        this.username = username;
+        this.commentText = commentText;
+        this.plantId = plantId;
         this.timestamp = timestamp;
     }
 
-    // Getters
-    public String getUserId() {
-        return userId;
+    // Getters and Setters
+    public String getUsername() {
+        return username;
     }
 
-    public String getText() {
-        return text;
+    public String getCommentText() {
+        return commentText;
+    }
+
+    public String getPlantId() {
+        return plantId;
     }
 
     public long getTimestamp() {
         return timestamp;
     }
+
+    // Optionally, you can add a toString() method for easier logging
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "username='" + username + '\'' +
+                ", commentText='" + commentText + '\'' +
+                ", plantId='" + plantId + '\'' +
+                ", timestamp=" + timestamp +
+                '}';
+    }
 }
+
+

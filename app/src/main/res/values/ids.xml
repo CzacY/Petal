@@ -12,4 +12,9 @@
     <item name="editTextComment" type="id" />
     <item name="submitComment" type="id" />
     <item name="loginBtn" type="id" />
+    <item name="recyclerView" type="id" />
+    <item name="commentTextView" type="id" />
+    <item name="timestampTextView" type="id" />
+    <item name="comment_input" type="id" />
+    <item name="post_comment_button" type="id" />
 </resources>
