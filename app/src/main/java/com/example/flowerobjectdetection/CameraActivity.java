@@ -74,7 +74,7 @@ public class CameraActivity extends AppCompatActivity implements CameraBridgeVie
         mOpenCvCameraView.setCvCameraViewListener(this);
 
         try {
-            objectDetectorClass = new objectDetectorClass(this, getAssets(), "new_model.tflite", "label_flower.txt", 320);
+            objectDetectorClass = new objectDetectorClass(this, getAssets(), "final.tflite", "label_flower.txt", 320);
             Log.d(TAG, "Model is successfully loaded");
         } catch (IOException e) {
             Log.e(TAG, "Error loading model", e);

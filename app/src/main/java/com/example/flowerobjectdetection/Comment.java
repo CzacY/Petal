@@ -41,6 +41,10 @@ public class Comment {
                 ", timestamp=" + timestamp +
                 '}';
     }
+
+    public int getCommentContent() {
+        return 0;
+    }
 }
 
 

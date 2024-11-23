@@ -17,8 +17,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import org.w3c.dom.Comment;
-
+import java.text.BreakIterator;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,14 +46,14 @@ public class SunflowerComment extends AppCompatActivity {
         recyclerView.setAdapter(commentAdapter);
 
         // Set up input field and post button
-        editTextComment = findViewById(R.id.editTextComment);
-        buttonSubmitComment = findViewById(R.id.buttonSubmitComment);
+        View commentInput = findViewById(R.id.editTextComment);
+        View postCommentButton = findViewById(R.id.buttonSubmitComment);
 
         // Fetch existing comments
         fetchComments();
 
         // Post comment when button is clicked
-        buttonSubmitComment.setOnClickListener(v -> postComment());
+        postCommentButton.setOnClickListener(v -> postComment());
     }
 
     private void postComment() {
@@ -70,7 +69,10 @@ public class SunflowerComment extends AppCompatActivity {
             if (!commentText.isEmpty()) {
                 // Create a new Comment object
                 Comment newComment = new Comment(
-                        user.getDisplayName(),commentText, "sunflower", System.currentTimeMillis()
+                        user.getDisplayName(),  // username
+                        commentText,            // content
+                        "sunflower",            // plantId (static for this example)
+                        System.currentTimeMillis()  // timestamp
                 );
 
                 // Log to confirm comment creation
@@ -95,6 +97,7 @@ public class SunflowerComment extends AppCompatActivity {
             Toast.makeText(SunflowerComment.this, "Please log in to post a comment.", Toast.LENGTH_SHORT).show();
         }
     }
+
 
     private void fetchComments() {
         db.collection("Comments")

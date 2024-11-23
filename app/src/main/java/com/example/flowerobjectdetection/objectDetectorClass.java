@@ -188,8 +188,38 @@ public class objectDetectorClass {
                 Log.d("PlantDetection", "Detected label: Bougainvillea with high accuracy");
                 Intent bougainvilleaIntent = new Intent(context, BougainvilleaInfo.class);
                 context.startActivity(bougainvilleaIntent);
-            } else if ("ClimbingRose".equals(label)) {
-                Log.d("PlantDetection", "Detected label: Rose with high accuracy");
+            } else if ("Zinnia".equals(label)) {
+                Log.d("PlantDetection","Detected label: Zinnia with high accuracy");
+                Intent zinniaIntent = new Intent(context, ZinniaInfo.class);
+                context.startActivity(zinniaIntent);
+
+            } else if ("Aloevera".equals(label)) {
+                Log.d("PlantDetection","Detected label: Aloevera with high accuracy");
+                Intent aloeveraIntent = new Intent(context, AloeveraInfo.class);
+                context.startActivity(aloeveraIntent);
+
+            } else if ("Cosmos".equals(label)) {
+                Log.d("PlantDetection", "Detected label: Cosmos with high accuracy");
+                Intent cosmosIntent = new Intent(context, CosmosInfo.class);
+                context.startActivity(cosmosIntent);
+
+            } else if ("frangipani".equals(label)) {
+                Log.d("PlantDetection", "Detected label: Frangipani with high accuracy");
+                Intent frangipaniIntent = new Intent(context, FrangipaniInfo.class);
+                context.startActivity(frangipaniIntent);
+
+            } else if ("gumamela".equals(label)) {
+                Log.d("PlantDetected", "Detected label: Gumamela with high accuracy");
+                Intent gumamelaIntent = new Intent(context, GumamelaInfo.class);
+                context.startActivity(gumamelaIntent);
+
+            } else if ("Forgetmenot".equals(label)) {
+                Log.d("PlantDetected", "Detected label: Forgetmenot with high accuracy");
+                Intent forgetmenotIntent = new Intent(context, ForgetmenotInfo.class);
+                context.startActivity(forgetmenotIntent);
+
+            } else if ("Climbingrose".equals(label)) {
+                Log.d("PlantDetected", "Detected label: Climbingrose with high accuracy");
                 Intent climbingroseIntent = new Intent(context, ClimbingroseInfo.class);
                 context.startActivity(climbingroseIntent);
             } else {

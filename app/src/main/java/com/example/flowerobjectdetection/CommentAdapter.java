@@ -5,9 +5,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
-
-import org.w3c.dom.Comment;
-
 import java.util.List;
 
 public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentViewHolder> {
@@ -33,7 +30,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
         // Set the data in the views
         holder.usernameTextView.setText(comment.getUsername());
         holder.commentTextView.setText(comment.getCommentContent());
-        holder.timestampTextView.setText(comment.getTimestamp());
+        holder.timestampTextView.setText((int) comment.getTimestamp());
     }
 
     @Override

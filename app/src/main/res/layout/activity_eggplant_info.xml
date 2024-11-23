@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/eggplant"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EggplantInfo"
-    android:padding="20dp">
+    android:background="@drawable/infofinalbg"
+    android:padding="20dp"
+    tools:context=".EggplantInfo">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="330dp"
+            android:layout_height="295dp"
             android:layout_margin="20sp"
             android:scaleType="fitXY"
             android:src="@drawable/eggplantdata"
@@ -21,39 +24,47 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.943"
             app:layout_constraintStart_toEndOf="@+id/textView7"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewegg"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Eggplant"
+            android:textAlignment="center"
+            android:textColor="@color/material_dynamic_neutral_variant20"
+            android:textSize="34sp" />
 
         <TextView
             android:id="@+id/textView7"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="0dp"
-            android:layout_marginBottom="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/eggplant"
-            android:textSize="16sp"
+            android:textColor="@color/material_dynamic_neutral_variant20"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
         <Button
-            android:id="@+id/btn_eggplantcomment"
+            android:id="@+id/btn_saveEggplant"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Comment"
+            android:text="Save"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
     </LinearLayout>
-
 
 
 </ScrollView>
