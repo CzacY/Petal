@@ -1,12 +1,15 @@
 package com.example.flowerobjectdetection;
-import com.example.flowerobjectdetection.Comment;
+
 public class Comment {
     private String username;
     private String commentText;
     private String plantId;
     private long timestamp;
 
-    // Constructor to initialize the values
+    // Default constructor (required for Firestore)
+    public Comment() {}
+
+    // Constructor
     public Comment(String username, String commentText, String plantId, long timestamp) {
         this.username = username;
         this.commentText = commentText;
@@ -14,7 +17,7 @@ public class Comment {
         this.timestamp = timestamp;
     }
 
-    // Getters and Setters
+    // Getters
     public String getUsername() {
         return username;
     }
@@ -31,16 +34,24 @@ public class Comment {
         return timestamp;
     }
 
-    // Optionally, you can add a toString() method for easier logging
-    @Override
-    public String toString() {
-        return "Comment{" +
-                "username='" + username + '\'' +
-                ", commentText='" + commentText + '\'' +
-                ", plantId='" + plantId + '\'' +
-                ", timestamp=" + timestamp +
-                '}';
+    // Setters
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setCommentText(String commentText) {
+        this.commentText = commentText;
+    }
+
+    public void setPlantId(String plantId) {
+        this.plantId = plantId;
+    }
+
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public String getText() {
+        return null;
     }
 }
-
-

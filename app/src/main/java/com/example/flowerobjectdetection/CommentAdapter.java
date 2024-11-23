@@ -4,53 +4,65 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import org.w3c.dom.Comment;
-
 import java.util.List;
 
 public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentViewHolder> {
-    private List<Comment> commentList;
 
-    // Constructor to initialize the comment list
-    public CommentAdapter(List<Comment> commentList) {
-        this.commentList = commentList;
+    private List<Comment> comments;
+
+    public CommentAdapter(List<Comment> comments) {
+        this.comments = comments;
     }
 
+    @NonNull
     @Override
-    public CommentViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        // Inflate the layout for each comment item
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_comment, parent, false);
+    public CommentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_comment, parent, false);
         return new CommentViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(CommentViewHolder holder, int position) {
-        // Get the current comment
-        Comment comment = commentList.get(position);
+    public void onBindViewHolder(@NonNull CommentViewHolder holder, int position) {
+        if (comments == null || comments.isEmpty() || position >= comments.size()) {
+            return; // Avoid any out-of-bounds errors
+        }
 
-        // Set the data in the views
-        holder.usernameTextView.setText(comment.getUsername());
-        holder.commentTextView.setText(comment.getCommentContent());
-        holder.timestampTextView.setText(comment.getTimestamp());
+        Comment comment = comments.get(position);
+
+        // Safely bind data with fallback for null fields
+        if (comment != null) {
+            holder.usernameTextView.setText(
+                    comment.getUsername() != null && !comment.getUsername().trim().isEmpty()
+                            ? comment.getUsername()
+                            : "Anonymous"
+            );
+            holder.commentTextView.setText(
+                    comment.getText() != null && !comment.getText().trim().isEmpty()
+                            ? comment.getText()
+                            : "No comment provided"
+            );
+        } else {
+            holder.usernameTextView.setText("Anonymous");
+            holder.commentTextView.setText("No comment provided");
+        }
     }
 
     @Override
     public int getItemCount() {
-        return commentList.size();  // Return the total number of comments
+        return comments != null ? comments.size() : 0;
     }
 
-    // ViewHolder class to represent each comment item
     public static class CommentViewHolder extends RecyclerView.ViewHolder {
-        TextView usernameTextView, commentTextView, timestampTextView;
+        TextView usernameTextView;
+        TextView commentTextView;
 
-        public CommentViewHolder(View itemView) {
+        public CommentViewHolder(@NonNull View itemView) {
             super(itemView);
-            // Initialize the views for the comment item
             usernameTextView = itemView.findViewById(R.id.usernameTextView);
             commentTextView = itemView.findViewById(R.id.commentTextView);
-            timestampTextView = itemView.findViewById(R.id.timestampTextView);
         }
     }
 }

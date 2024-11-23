@@ -17,4 +17,5 @@
     <item name="timestampTextView" type="id" />
     <item name="comment_input" type="id" />
     <item name="post_comment_button" type="id" />
+    <item name="btn_submitCommentegg" type="id" />
 </resources>
