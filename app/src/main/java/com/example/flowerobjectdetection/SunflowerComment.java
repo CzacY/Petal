@@ -17,6 +17,9 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import org.w3c.dom.Comment;
+
+import java.io.ByteArrayOutputStream;
 import java.text.BreakIterator;
 import java.util.ArrayList;
 import java.util.List;
@@ -66,17 +69,11 @@ public class SunflowerComment extends AppCompatActivity {
             // Log comment text to check if it's retrieved correctly
             Log.d("SunflowerComment", "Comment text: " + commentText);
 
-            if (!commentText.isEmpty()) {
-                // Create a new Comment object
-                Comment newComment = new Comment(
-                        user.getDisplayName(),  // username
-                        commentText,            // content
-                        "sunflower",            // plantId (static for this example)
-                        System.currentTimeMillis()  // timestamp
-                );
+
 
                 // Log to confirm comment creation
-                Log.d("SunflowerComment", "New comment created: " + newComment.toString());
+            ByteArrayOutputStream newComment = new ByteArrayOutputStream();
+            Log.d("SunflowerComment", "New comment created: " + newComment.toString());
 
                 // Save comment to Firestore
                 db.collection("Comments")
@@ -93,10 +90,8 @@ public class SunflowerComment extends AppCompatActivity {
             } else {
                 Toast.makeText(SunflowerComment.this, "Please enter a comment.", Toast.LENGTH_SHORT).show();
             }
-        } else {
-            Toast.makeText(SunflowerComment.this, "Please log in to post a comment.", Toast.LENGTH_SHORT).show();
         }
-    }
+
 
 
     private void fetchComments() {
