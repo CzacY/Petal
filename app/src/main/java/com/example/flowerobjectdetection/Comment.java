@@ -54,4 +54,8 @@ public class Comment {
     public String getText() {
         return null;
     }
+
+    public int getCommentContent() {
+        return 0;
+    }
 }
