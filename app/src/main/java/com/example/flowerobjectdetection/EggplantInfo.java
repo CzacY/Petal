@@ -17,14 +17,6 @@ private Button eggplantcomment;
         setContentView(R.layout.activity_eggplant_info);
 
 
-        eggplantcomment = findViewById(R.id.btn_eggplantcomment);
-        eggplantcomment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(EggplantInfo.this, EggplantComment.class));
-            }
-        });
-
 
     }
 }

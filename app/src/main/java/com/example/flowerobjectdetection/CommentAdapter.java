@@ -4,31 +4,34 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import androidx.recyclerview.widget.RecyclerView;
 
-import org.w3c.dom.Comment;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
 public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentViewHolder> {
+
     private List<Comment> commentList;
 
     public CommentAdapter(List<Comment> commentList) {
         this.commentList = commentList;
     }
 
+    @NonNull
     @Override
-    public CommentViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public CommentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_comment, parent, false);
         return new CommentViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(CommentViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CommentViewHolder holder, int position) {
         Comment comment = commentList.get(position);
-        holder.usernameTextView.setText(comment.getData());
-        holder.commentTextView.setText(comment.getData());
-        holder.timestampTextView.setText(comment.getData());
+
+        // Set username and content in the ViewHolder
+        holder.username.setText(comment.getUsername());
+        holder.content.setText(comment.getContent());
     }
 
     @Override
@@ -36,14 +39,15 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
         return commentList.size();
     }
 
-    public static class CommentViewHolder extends RecyclerView.ViewHolder {
-        TextView usernameTextView, commentTextView, timestampTextView;
+    static class CommentViewHolder extends RecyclerView.ViewHolder {
+        TextView username, content;
 
-        public CommentViewHolder(View itemView) {
+        public CommentViewHolder(@NonNull View itemView) {
             super(itemView);
-            usernameTextView = itemView.findViewById(R.id.usernameTextView);
-            commentTextView = itemView.findViewById(R.id.commentTextView);
-            timestampTextView = itemView.findViewById(R.id.timestampTextView);
+
+            // Bind TextView elements
+            username = itemView.findViewById(R.id.comment_username);
+            content = itemView.findViewById(R.id.comment_content);
         }
     }
 }

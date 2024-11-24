@@ -18,4 +18,5 @@
     <item name="comment_input" type="id" />
     <item name="post_comment_button" type="id" />
     <item name="btn_submitCommentegg" type="id" />
+    <item name="commentSectionInput" type="id" />
 </resources>
