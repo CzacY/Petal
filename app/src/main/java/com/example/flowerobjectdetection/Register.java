@@ -669,4 +669,8 @@ class User {
         this.email = email;
         this.savedPlants = savedPlants;
     }
+
+    public char[] getEmail() {
+        return getEmail();
+    }
 }

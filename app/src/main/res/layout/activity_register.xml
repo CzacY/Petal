@@ -81,10 +81,11 @@
 
     <Button
         android:id="@+id/btn_register"
-        android:layout_width="350dp"
+        android:layout_width="383dp"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-black"
         android:gravity="center"
+        android:backgroundTint="@android:color/holo_green_light"
         android:text="Register"
         android:textSize="20sp" />
 

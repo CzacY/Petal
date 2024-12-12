@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
     <!-- Permissions -->
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
-    <!-- Camera Features -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- Camera Features -->
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
@@ -31,51 +28,87 @@
         android:supportsRtl="true"
         android:theme="@style/PETAL"
         tools:targetApi="34">
-
-        <!-- Firebase Metadata -->
+        <activity
+            android:name=".ClimbingRoseComment"
+            android:exported="false" />
+        <activity
+            android:name=".EggplantCommentF"
+            android:exported="false" />
+        <activity
+            android:name=".Admin"
+            android:exported="false" /> <!-- Firebase Metadata -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/petalcutebg" />
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
-            android:value="default_channel" />
-
-        <!-- Main Activity -->
+            android:value="default_channel" /> <!-- Main Activity -->
         <activity
             android:name=".AppDesign"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- SunflowerComment Activity -->
+        </activity> <!-- SunflowerComment Activity -->
         <activity
             android:name=".SunflowerComment"
-            android:exported="true" />
-
-        <!-- Plant Info Activities -->
-        <activity android:name=".FrangipaniInfo" android:exported="false" />
-        <activity android:name=".ForgetmenotInfo" android:exported="false" />
-        <activity android:name=".GumamelaInfo" android:exported="false" />
-        <activity android:name=".CosmosInfo" android:exported="false" />
-        <activity android:name=".AloeveraInfo" android:exported="false" />
-        <activity android:name=".ZinniaInfo" android:exported="false" />
-        <activity android:name=".BougainvilleaInfo" android:exported="false" />
-        <activity android:name=".EggplantInfo" android:exported="false" />
-        <activity android:name=".ClimbingroseInfo" android:exported="false" />
-        <activity android:name=".SunflowerInfo" android:exported="false" />
-
-        <!-- Other Activities -->
-        <activity android:name=".TermsandConditions" android:exported="false" />
-        <activity android:name=".UserProfile" android:exported="false" />
-        <activity android:name=".Settings" android:exported="false" />
-        <activity android:name=".Login" android:exported="false" />
-        <activity android:name=".Register" android:exported="false" />
-        <activity android:name=".PlantLog" android:exported="false" />
-        <activity android:name=".CameraActivity" android:exported="false" />
-        <activity android:name=".Dashboard" android:exported="false" />
+            android:exported="true" /> <!-- Plant Info Activities -->
+        <activity
+            android:name=".FrangipaniInfo"
+            android:exported="false" />
+        <activity
+            android:name=".ForgetmenotInfo"
+            android:exported="false" />
+        <activity
+            android:name=".GumamelaInfo"
+            android:exported="false" />
+        <activity
+            android:name=".CosmosInfo"
+            android:exported="false" />
+        <activity
+            android:name=".AloeveraInfo"
+            android:exported="false" />
+        <activity
+            android:name=".ZinniaInfo"
+            android:exported="false" />
+        <activity
+            android:name=".BougainvilleaInfo"
+            android:exported="false" />
+        <activity
+            android:name=".EggplantInfo"
+            android:exported="false" />
+        <activity
+            android:name=".ClimbingroseInfo"
+            android:exported="false" />
+        <activity
+            android:name=".SunflowerInfo"
+            android:exported="false" /> <!-- Other Activities -->
+        <activity
+            android:name=".TermsandConditions"
+            android:exported="false" />
+        <activity
+            android:name=".UserProfile"
+            android:exported="false" />
+        <activity
+            android:name=".Settings"
+            android:exported="false" />
+        <activity
+            android:name=".Login"
+            android:exported="false" />
+        <activity
+            android:name=".Register"
+            android:exported="false" />
+        <activity
+            android:name=".PlantLog"
+            android:exported="false" />
+        <activity
+            android:name=".CameraActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Dashboard"
+            android:exported="false" />
     </application>
 
 </manifest>

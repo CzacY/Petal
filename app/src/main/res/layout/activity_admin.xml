@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/UserLogins"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Text view for displaying the list of usernames -->
+    <TextView
+        android:id="@+id/txtUsernames"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Logged in Users will appear here."
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+</LinearLayout>
