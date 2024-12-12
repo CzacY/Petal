@@ -76,6 +76,18 @@
             android:textColor="@color/material_dynamic_neutral_variant20"
             android:textSize="16sp" />
 
+        <Button
+            android:id="@+id/btn_gumamelaComment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:backgroundTint="@android:color/holo_green_light"
+            android:text="Comment"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
     </LinearLayout>
 
 </ScrollView>

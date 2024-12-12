@@ -1,5 +1,6 @@
 package com.example.flowerobjectdetection;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,7 +18,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class ZinniaInfo extends AppCompatActivity {
 
     private TextView statusTextView;
-    private Button saveButton;
+    private Button saveButton, commentButton;
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
 
@@ -37,6 +38,20 @@ public class ZinniaInfo extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
+
+        commentButton = findViewById(R.id.btn_zinniaComment);
+
+        commentButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("SunflowerComment", "Comment button clicked"); // Debug Log
+                try {
+                    startActivity(new Intent(ZinniaInfo.this, ZinniaComment.class));
+                } catch (Exception e) {
+                    Log.e("ActivityError", "Error starting SunflowerComment", e);
+                }
+            }
+        });
 
         // Get the current user
         FirebaseUser currentUser = mAuth.getCurrentUser();

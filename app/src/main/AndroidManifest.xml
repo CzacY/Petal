@@ -29,6 +29,24 @@
         android:theme="@style/PETAL"
         tools:targetApi="34">
         <activity
+            android:name=".ZinniaComment"
+            android:exported="false" />
+        <activity
+            android:name=".GumamelaComment"
+            android:exported="false" />
+        <activity
+            android:name=".FrangipaniComment"
+            android:exported="false" />
+        <activity
+            android:name=".ForgetmenotComment"
+            android:exported="false" />
+        <activity
+            android:name=".BougainvilleaComment"
+            android:exported="false" />
+        <activity
+            android:name=".CosmosComment"
+            android:exported="false" />
+        <activity
             android:name=".ClimbingRoseComment"
             android:exported="false" />
         <activity
